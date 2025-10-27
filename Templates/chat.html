@@ -1,0 +1,121 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="chat-app">
+  <aside class="left-panel">
+    <div class="profile">
+      <div class="avatar">🌸</div>
+      <div>
+        <strong>{{ username }}</strong><br>
+        <small>Your emotional space</small>
+      </div>
+    </div>
+
+    <div class="mood-entry">
+      <h3>💭 Log Your Mood</h3>
+      <select id="mood-select">
+        <option value="">-- How do you feel today? --</option>
+        <option>Happy</option>
+        <option>Calm</option>
+        <option>Anxious</option>
+        <option>Sad</option>
+        <option>Angry</option>
+        <option>Stressed</option>
+      </select>
+      <textarea id="mood-note" placeholder="Write a short note (optional)..."></textarea>
+      <button class="btn" onclick="saveMood()">Save Mood</button>
+      <h4>Recent Moods 🌈</h4>
+      <ul id="mood-list"></ul>
+    </div>
+  </aside>
+
+  <section class="chat-panel">
+    <div id="chat-box" class="chat-box"></div>
+    <div class="composer">
+      <input id="user-input" placeholder="Share your thoughts..." autocomplete="off">
+      <button class="btn send-btn" onclick="sendMessage()">Send 💬</button>
+    </div>
+  </section>
+</div>
+
+<style>
+  .chat-app {
+    display: flex;
+    gap: 20px;
+  }
+
+  .left-panel {
+    background: #f3f7f8;
+    border-radius: 20px;
+    padding: 20px;
+    flex: 1;
+    max-width: 300px;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.05);
+  }
+
+  .profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  .avatar {
+    background: #a5d6a7;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 24px;
+  }
+
+  select, textarea {
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    font-size: 0.95rem;
+  }
+
+  .chat-panel {
+    flex: 2.5;
+    background: white;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 8px 15px rgba(0,0,0,0.05);
+  }
+
+  .chat-box {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px;
+  }
+
+  .composer {
+    display: flex;
+    padding: 15px;
+    border-top: 1px solid #eee;
+    background: #fafafa;
+    border-radius: 0 0 20px 20px;
+  }
+
+  .composer input {
+    flex: 1;
+    border: none;
+    padding: 12px;
+    font-size: 1rem;
+    border-radius: 10px;
+    outline: none;
+    background: #f1f1f1;
+  }
+
+  .send-btn {
+    margin-left: 10px;
+    background: linear-gradient(90deg, #81c784, #64b5f6);
+  }
+</style>
+{% endblock %}
